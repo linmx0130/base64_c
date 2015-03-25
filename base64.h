@@ -4,5 +4,6 @@
 #include <stdio.h>
 typedef unsigned char BYTE;
 extern void encode(FILE* in, FILE *out);
+extern void decode(FILE* in, FILE *out);
 
 #endif

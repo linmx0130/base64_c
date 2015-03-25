@@ -44,6 +44,7 @@ void encode(FILE* in, FILE *out){
 	int n;
 	BYTE *code;
 	char ans[4];
+	int count=0;
 	while (n=fread(d,1,3,in)){
 		code=encode_bytes(d,n);
 		int i;
@@ -59,7 +60,13 @@ void encode(FILE* in, FILE *out){
 		for (i=0;i<4;++i){
 			fputc(ans[i],out);
 		}
+		count ++;
+		if (count == 19) {
+			fputc('\n',out);
+			count=0;
+		}
 		memset(d,0,sizeof(d));
 		if (n!=3) break;
 	}
+	if (count!=0) fputc('\n',out);
 }
